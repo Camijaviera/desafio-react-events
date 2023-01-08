@@ -11,7 +11,7 @@ const App=()=>{
   return (
     <div className="d-flex flex-column align-items-center">
       <h1>Desafío Estado de los Componentes y Eventos en REACT</h1>
-      <Input input1={name} input2={password} setState1={setName} setState2={setPassword}/>
+      <Input name={name} password={password} setName={setName} setPassword={setPassword}/>
     </div>
   )
 }

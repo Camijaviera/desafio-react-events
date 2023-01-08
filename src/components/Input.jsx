@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "./Button";
 
-const Input = (props) => {
+const Input = ({name, password, setName, setPassword}) => {
   const [boton, setBoton] = useState(false);
   const [error, setError] = useState(false);
   const [data, setData] = useState(false);
@@ -18,7 +18,7 @@ const Input = (props) => {
 
     /* Validar datos */
 
-    if (props.input1 === "") {
+    if (name === "") {
       setError(true);
       return;
     }
@@ -26,8 +26,8 @@ const Input = (props) => {
   };
 
   const handleReset = () => {
-    props.setState1("");
-    props.setState2("");
+    setName("");
+    setPassword("");
     setBoton(false);
     setData(false);
     setError(false);
@@ -35,7 +35,7 @@ const Input = (props) => {
 
   return (
     <div>
-      {error ? <h2 className="text-danger">Debe ingresar un Nombre</h2> : null}
+      {error && <h2 className="text-danger">Debe ingresar un Nombre</h2>}
       <form
         className="d-flex flex-column form-control w-100"
         action=""
@@ -51,9 +51,9 @@ const Input = (props) => {
           placeholder="Ingrese Nombre"
           id="inptName"
           className="form-control"
-          value={props.input1}
+          value={name}
           onChange={(e) => {
-            props.setState1(e.target.value);
+            setName(e.target.value);
           }}
         />
         <label htmlFor="" className="form-label">
@@ -65,9 +65,9 @@ const Input = (props) => {
           id="inptPass"
           className="form-control"
           placeholder="Ingrese Password"
-          value={props.input2}
+          value={password}
           onChange={(e) => {
-            props.setState2(e.target.value);
+            setPassword(e.target.value);
           }}
         />
         <button
@@ -77,14 +77,14 @@ const Input = (props) => {
         >
           Limpiar
         </button>
-        {boton ? <Button /> : null}
+        {boton && <Button />}
       </form>
-      {data ? (
+      {data && (
         <h2 className="text-success">
-          Los datos ingresados son: Nombre-{props.input1} y Password-
-          {props.input2}
+          Los datos ingresados son: Nombre-{name} y Password-
+          {password}
         </h2>
-      ) : null}
+      )}
     </div>
   );
 };
